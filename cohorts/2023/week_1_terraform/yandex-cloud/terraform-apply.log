@@ -1,0 +1,340 @@
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_mdb_clickhouse_cluster.ch_database will be created
+  + resource "yandex_mdb_clickhouse_cluster" "ch_database" {
+      + copy_schema_on_new_hosts = false
+      + created_at               = (known after apply)
+      + deletion_protection      = (known after apply)
+      + embedded_keeper          = (known after apply)
+      + environment              = "PRESTABLE"
+      + folder_id                = (known after apply)
+      + health                   = (known after apply)
+      + id                       = (known after apply)
+      + labels                   = (known after apply)
+      + name                     = "ch-db-dev"
+      + network_id               = "enp5e3e9c5cu37nuh19r"
+      + security_group_ids       = (known after apply)
+      + service_account_id       = (known after apply)
+      + sql_database_management  = (known after apply)
+      + sql_user_management      = (known after apply)
+      + status                   = (known after apply)
+      + version                  = (known after apply)
+
+      + access {
+          + data_lens     = (known after apply)
+          + data_transfer = (known after apply)
+          + metrika       = (known after apply)
+          + serverless    = (known after apply)
+          + web_sql       = (known after apply)
+          + yandex_query  = (known after apply)
+        }
+
+      + backup_window_start {
+          + hours   = (known after apply)
+          + minutes = (known after apply)
+        }
+
+      + clickhouse {
+          + config {
+              + background_pool_size            = (known after apply)
+              + background_schedule_pool_size   = (known after apply)
+              + geobase_uri                     = (known after apply)
+              + keep_alive_timeout              = (known after apply)
+              + log_level                       = (known after apply)
+              + mark_cache_size                 = (known after apply)
+              + max_concurrent_queries          = (known after apply)
+              + max_connections                 = (known after apply)
+              + max_partition_size_to_drop      = (known after apply)
+              + max_table_size_to_drop          = (known after apply)
+              + metric_log_enabled              = (known after apply)
+              + metric_log_retention_size       = (known after apply)
+              + metric_log_retention_time       = (known after apply)
+              + part_log_retention_size         = (known after apply)
+              + part_log_retention_time         = (known after apply)
+              + query_log_retention_size        = (known after apply)
+              + query_log_retention_time        = (known after apply)
+              + query_thread_log_enabled        = (known after apply)
+              + query_thread_log_retention_size = (known after apply)
+              + query_thread_log_retention_time = (known after apply)
+              + text_log_enabled                = (known after apply)
+              + text_log_level                  = (known after apply)
+              + text_log_retention_size         = (known after apply)
+              + text_log_retention_time         = (known after apply)
+              + timezone                        = (known after apply)
+              + trace_log_enabled               = (known after apply)
+              + trace_log_retention_size        = (known after apply)
+              + trace_log_retention_time        = (known after apply)
+              + uncompressed_cache_size         = (known after apply)
+
+              + compression {
+                  + method              = (known after apply)
+                  + min_part_size       = (known after apply)
+                  + min_part_size_ratio = (known after apply)
+                }
+
+              + graphite_rollup {
+                  + name = (known after apply)
+
+                  + pattern {
+                      + function = (known after apply)
+                      + regexp   = (known after apply)
+
+                      + retention {
+                          + age       = (known after apply)
+                          + precision = (known after apply)
+                        }
+                    }
+                }
+
+              + kafka {
+                  + sasl_mechanism    = (known after apply)
+                  + sasl_password     = (sensitive value)
+                  + sasl_username     = (known after apply)
+                  + security_protocol = (known after apply)
+                }
+
+              + kafka_topic {
+                  + name = (known after apply)
+
+                  + settings {
+                      + sasl_mechanism    = (known after apply)
+                      + sasl_password     = (sensitive value)
+                      + sasl_username     = (known after apply)
+                      + security_protocol = (known after apply)
+                    }
+                }
+
+              + merge_tree {
+                  + max_bytes_to_merge_at_min_space_in_pool                   = (known after apply)
+                  + max_replicated_merges_in_queue                            = (known after apply)
+                  + number_of_free_entries_in_pool_to_lower_max_size_of_merge = (known after apply)
+                  + parts_to_delay_insert                                     = (known after apply)
+                  + parts_to_throw_insert                                     = (known after apply)
+                  + replicated_deduplication_window                           = (known after apply)
+                  + replicated_deduplication_window_seconds                   = (known after apply)
+                }
+
+              + rabbitmq {
+                  + password = (sensitive value)
+                  + username = (known after apply)
+                }
+            }
+
+          + resources {
+              + disk_size          = 10
+              + disk_type_id       = "network-ssd"
+              + resource_preset_id = "b1.micro"
+            }
+        }
+
+      + cloud_storage {
+          + enabled = false
+        }
+
+      + database {
+          + name = "db_dataset"
+        }
+
+      + host {
+          + assign_public_ip = false
+          + fqdn             = (known after apply)
+          + shard_name       = (known after apply)
+          + subnet_id        = (known after apply)
+          + type             = "CLICKHOUSE"
+          + zone             = "ru-central1-a"
+        }
+
+      + maintenance_window {
+          + type = "ANYTIME"
+        }
+
+      + user {
+          + name     = "ch_user"
+          + password = (sensitive value)
+
+          + permission {
+              + database_name = "db_dataset"
+            }
+
+          + quota {
+              + errors            = (known after apply)
+              + execution_time    = (known after apply)
+              + interval_duration = (known after apply)
+              + queries           = (known after apply)
+              + read_rows         = (known after apply)
+              + result_rows       = (known after apply)
+            }
+
+          + settings {
+              + add_http_cors_header                               = (known after apply)
+              + allow_ddl                                          = (known after apply)
+              + compile                                            = (known after apply)
+              + compile_expressions                                = (known after apply)
+              + connect_timeout                                    = (known after apply)
+              + count_distinct_implementation                      = (known after apply)
+              + distinct_overflow_mode                             = (known after apply)
+              + distributed_aggregation_memory_efficient           = (known after apply)
+              + distributed_ddl_task_timeout                       = (known after apply)
+              + distributed_product_mode                           = (known after apply)
+              + empty_result_for_aggregation_by_empty_set          = (known after apply)
+              + enable_http_compression                            = (known after apply)
+              + fallback_to_stale_replicas_for_distributed_queries = (known after apply)
+              + force_index_by_date                                = (known after apply)
+              + force_primary_key                                  = (known after apply)
+              + group_by_overflow_mode                             = (known after apply)
+              + group_by_two_level_threshold                       = (known after apply)
+              + group_by_two_level_threshold_bytes                 = (known after apply)
+              + http_connection_timeout                            = (known after apply)
+              + http_headers_progress_interval                     = (known after apply)
+              + http_receive_timeout                               = (known after apply)
+              + http_send_timeout                                  = (known after apply)
+              + input_format_defaults_for_omitted_fields           = (known after apply)
+              + input_format_values_interpret_expressions          = (known after apply)
+              + insert_quorum                                      = (known after apply)
+              + insert_quorum_timeout                              = (known after apply)
+              + join_overflow_mode                                 = (known after apply)
+              + join_use_nulls                                     = (known after apply)
+              + joined_subquery_requires_alias                     = (known after apply)
+              + low_cardinality_allow_in_native_format             = (known after apply)
+              + max_ast_depth                                      = (known after apply)
+              + max_ast_elements                                   = (known after apply)
+              + max_block_size                                     = (known after apply)
+              + max_bytes_before_external_group_by                 = (known after apply)
+              + max_bytes_before_external_sort                     = (known after apply)
+              + max_bytes_in_distinct                              = (known after apply)
+              + max_bytes_in_join                                  = (known after apply)
+              + max_bytes_in_set                                   = (known after apply)
+              + max_bytes_to_read                                  = (known after apply)
+              + max_bytes_to_sort                                  = (known after apply)
+              + max_bytes_to_transfer                              = (known after apply)
+              + max_columns_to_read                                = (known after apply)
+              + max_execution_time                                 = (known after apply)
+              + max_expanded_ast_elements                          = (known after apply)
+              + max_insert_block_size                              = (known after apply)
+              + max_memory_usage                                   = (known after apply)
+              + max_memory_usage_for_user                          = (known after apply)
+              + max_network_bandwidth                              = (known after apply)
+              + max_network_bandwidth_for_user                     = (known after apply)
+              + max_query_size                                     = (known after apply)
+              + max_replica_delay_for_distributed_queries          = (known after apply)
+              + max_result_bytes                                   = (known after apply)
+              + max_result_rows                                    = (known after apply)
+              + max_rows_in_distinct                               = (known after apply)
+              + max_rows_in_join                                   = (known after apply)
+              + max_rows_in_set                                    = (known after apply)
+              + max_rows_to_group_by                               = (known after apply)
+              + max_rows_to_read                                   = (known after apply)
+              + max_rows_to_sort                                   = (known after apply)
+              + max_rows_to_transfer                               = (known after apply)
+              + max_temporary_columns                              = (known after apply)
+              + max_temporary_non_const_columns                    = (known after apply)
+              + max_threads                                        = (known after apply)
+              + merge_tree_max_bytes_to_use_cache                  = (known after apply)
+              + merge_tree_max_rows_to_use_cache                   = (known after apply)
+              + merge_tree_min_bytes_for_concurrent_read           = (known after apply)
+              + merge_tree_min_rows_for_concurrent_read            = (known after apply)
+              + min_bytes_to_use_direct_io                         = (known after apply)
+              + min_count_to_compile                               = (known after apply)
+              + min_count_to_compile_expression                    = (known after apply)
+              + min_execution_speed                                = (known after apply)
+              + min_execution_speed_bytes                          = (known after apply)
+              + min_insert_block_size_bytes                        = (known after apply)
+              + min_insert_block_size_rows                         = (known after apply)
+              + output_format_json_quote_64bit_integers            = (known after apply)
+              + output_format_json_quote_denormals                 = (known after apply)
+              + priority                                           = (known after apply)
+              + quota_mode                                         = (known after apply)
+              + read_overflow_mode                                 = (known after apply)
+              + readonly                                           = (known after apply)
+              + receive_timeout                                    = (known after apply)
+              + replication_alter_partitions_sync                  = (known after apply)
+              + result_overflow_mode                               = (known after apply)
+              + select_sequential_consistency                      = (known after apply)
+              + send_progress_in_http_headers                      = (known after apply)
+              + send_timeout                                       = (known after apply)
+              + set_overflow_mode                                  = (known after apply)
+              + skip_unavailable_shards                            = (known after apply)
+              + sort_overflow_mode                                 = (known after apply)
+              + timeout_overflow_mode                              = (known after apply)
+              + transfer_overflow_mode                             = (known after apply)
+              + transform_null_in                                  = (known after apply)
+              + use_uncompressed_cache                             = (known after apply)
+            }
+        }
+    }
+
+  # yandex_storage_bucket.bucket-dev will be created
+  + resource "yandex_storage_bucket" "bucket-dev" {
+      + access_key            = "YCAJEATZ2ic2bgXBibKj52zxM"
+      + acl                   = "private"
+      + bucket                = "tf-bucket-dev"
+      + bucket_domain_name    = (known after apply)
+      + default_storage_class = (known after apply)
+      + folder_id             = (known after apply)
+      + force_destroy         = false
+      + id                    = (known after apply)
+      + secret_key            = (sensitive value)
+      + website_domain        = (known after apply)
+      + website_endpoint      = (known after apply)
+
+      + anonymous_access_flags {
+          + list = (known after apply)
+          + read = (known after apply)
+        }
+
+      + versioning {
+          + enabled = (known after apply)
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_storage_bucket.bucket-dev: Creating...
+yandex_mdb_clickhouse_cluster.ch_database: Creating...
+yandex_storage_bucket.bucket-dev: Creation complete after 2s [id=tf-bucket-dev]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [10s elapsed]
+^Ayandex_mdb_clickhouse_cluster.ch_database: Still creating... [20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [50s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m0s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [1m50s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m0s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [2m50s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m0s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [3m50s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m0s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [4m50s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [5m0s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [5m10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [5m20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [5m30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still creating... [5m40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Creation complete after 5m40s [id=c9qvopbfe5q43tsmkn29]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.

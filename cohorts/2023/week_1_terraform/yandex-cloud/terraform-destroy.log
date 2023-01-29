@@ -1,0 +1,273 @@
+yandex_storage_bucket.bucket-dev: Refreshing state... [id=tf-bucket-dev]
+yandex_mdb_clickhouse_cluster.ch_database: Refreshing state... [id=c9qvopbfe5q43tsmkn29]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # yandex_mdb_clickhouse_cluster.ch_database will be destroyed
+  - resource "yandex_mdb_clickhouse_cluster" "ch_database" {
+      - copy_schema_on_new_hosts = false -> null
+      - created_at               = "2023-01-29T01:16:24Z" -> null
+      - deletion_protection      = false -> null
+      - embedded_keeper          = false -> null
+      - environment              = "PRESTABLE" -> null
+      - folder_id                = "b1gjidbal573f10rma62" -> null
+      - health                   = "ALIVE" -> null
+      - id                       = "c9qvopbfe5q43tsmkn29" -> null
+      - labels                   = {} -> null
+      - name                     = "ch-db-dev" -> null
+      - network_id               = "enp5e3e9c5cu37nuh19r" -> null
+      - security_group_ids       = [] -> null
+      - sql_database_management  = false -> null
+      - sql_user_management      = false -> null
+      - status                   = "RUNNING" -> null
+      - version                  = "22.8" -> null
+
+      - access {
+          - data_lens     = false -> null
+          - data_transfer = false -> null
+          - metrika       = false -> null
+          - serverless    = false -> null
+          - web_sql       = false -> null
+          - yandex_query  = false -> null
+        }
+
+      - backup_window_start {
+          - hours   = 0 -> null
+          - minutes = 0 -> null
+        }
+
+      - clickhouse {
+          - config {
+              - background_pool_size            = 0 -> null
+              - background_schedule_pool_size   = 0 -> null
+              - keep_alive_timeout              = 3 -> null
+              - log_level                       = "DEBUG" -> null
+              - mark_cache_size                 = 5368709120 -> null
+              - max_concurrent_queries          = 500 -> null
+              - max_connections                 = 4096 -> null
+              - max_partition_size_to_drop      = 53687091200 -> null
+              - max_table_size_to_drop          = 53687091200 -> null
+              - metric_log_enabled              = true -> null
+              - metric_log_retention_size       = 536870912 -> null
+              - metric_log_retention_time       = 2592000000 -> null
+              - part_log_retention_size         = 536870912 -> null
+              - part_log_retention_time         = 2592000000 -> null
+              - query_log_retention_size        = 1073741824 -> null
+              - query_log_retention_time        = 2592000000 -> null
+              - query_thread_log_enabled        = true -> null
+              - query_thread_log_retention_size = 536870912 -> null
+              - query_thread_log_retention_time = 2592000000 -> null
+              - text_log_enabled                = false -> null
+              - text_log_level                  = "TRACE" -> null
+              - text_log_retention_size         = 536870912 -> null
+              - text_log_retention_time         = 2592000000 -> null
+              - timezone                        = "Europe/Moscow" -> null
+              - trace_log_enabled               = true -> null
+              - trace_log_retention_size        = 536870912 -> null
+              - trace_log_retention_time        = 2592000000 -> null
+              - uncompressed_cache_size         = 8589934592 -> null
+
+              - kafka {
+                  - sasl_mechanism    = "SASL_MECHANISM_UNSPECIFIED" -> null
+                  - security_protocol = "SECURITY_PROTOCOL_UNSPECIFIED" -> null
+                }
+
+              - merge_tree {
+                  - max_bytes_to_merge_at_min_space_in_pool                   = 1048576 -> null
+                  - max_replicated_merges_in_queue                            = 16 -> null
+                  - number_of_free_entries_in_pool_to_lower_max_size_of_merge = 8 -> null
+                  - parts_to_delay_insert                                     = 150 -> null
+                  - parts_to_throw_insert                                     = 300 -> null
+                  - replicated_deduplication_window                           = 100 -> null
+                  - replicated_deduplication_window_seconds                   = 604800 -> null
+                }
+
+              - rabbitmq {}
+            }
+
+          - resources {
+              - disk_size          = 10 -> null
+              - disk_type_id       = "network-ssd" -> null
+              - resource_preset_id = "b1.micro" -> null
+            }
+        }
+
+      - cloud_storage {
+          - enabled = false -> null
+        }
+
+      - database {
+          - name = "db_dataset" -> null
+        }
+
+      - host {
+          - assign_public_ip = false -> null
+          - fqdn             = "rc1a-n1js1lds5556s0mg.mdb.yandexcloud.net" -> null
+          - shard_name       = "shard1" -> null
+          - subnet_id        = "e9bfg44jq6f6nf097i3s" -> null
+          - type             = "CLICKHOUSE" -> null
+          - zone             = "ru-central1-a" -> null
+        }
+
+      - maintenance_window {
+          - hour = 0 -> null
+          - type = "ANYTIME" -> null
+        }
+
+      - user {
+          - name     = "ch_user" -> null
+          - password = (sensitive value)
+
+          - permission {
+              - database_name = "db_dataset" -> null
+            }
+
+          - settings {
+              - add_http_cors_header                               = false -> null
+              - allow_ddl                                          = false -> null
+              - compile                                            = false -> null
+              - compile_expressions                                = false -> null
+              - connect_timeout                                    = 0 -> null
+              - count_distinct_implementation                      = "unspecified" -> null
+              - distinct_overflow_mode                             = "unspecified" -> null
+              - distributed_aggregation_memory_efficient           = false -> null
+              - distributed_ddl_task_timeout                       = 0 -> null
+              - distributed_product_mode                           = "unspecified" -> null
+              - empty_result_for_aggregation_by_empty_set          = false -> null
+              - enable_http_compression                            = false -> null
+              - fallback_to_stale_replicas_for_distributed_queries = false -> null
+              - force_index_by_date                                = false -> null
+              - force_primary_key                                  = false -> null
+              - group_by_overflow_mode                             = "unspecified" -> null
+              - group_by_two_level_threshold                       = 0 -> null
+              - group_by_two_level_threshold_bytes                 = 0 -> null
+              - http_connection_timeout                            = 0 -> null
+              - http_headers_progress_interval                     = 0 -> null
+              - http_receive_timeout                               = 0 -> null
+              - http_send_timeout                                  = 0 -> null
+              - input_format_defaults_for_omitted_fields           = false -> null
+              - input_format_values_interpret_expressions          = false -> null
+              - insert_quorum                                      = 0 -> null
+              - insert_quorum_timeout                              = 0 -> null
+              - join_overflow_mode                                 = "unspecified" -> null
+              - join_use_nulls                                     = false -> null
+              - joined_subquery_requires_alias                     = false -> null
+              - low_cardinality_allow_in_native_format             = false -> null
+              - max_ast_depth                                      = 0 -> null
+              - max_ast_elements                                   = 0 -> null
+              - max_block_size                                     = 0 -> null
+              - max_bytes_before_external_group_by                 = 0 -> null
+              - max_bytes_before_external_sort                     = 0 -> null
+              - max_bytes_in_distinct                              = 0 -> null
+              - max_bytes_in_join                                  = 0 -> null
+              - max_bytes_in_set                                   = 0 -> null
+              - max_bytes_to_read                                  = 0 -> null
+              - max_bytes_to_sort                                  = 0 -> null
+              - max_bytes_to_transfer                              = 0 -> null
+              - max_columns_to_read                                = 0 -> null
+              - max_execution_time                                 = 0 -> null
+              - max_expanded_ast_elements                          = 0 -> null
+              - max_insert_block_size                              = 0 -> null
+              - max_memory_usage                                   = 0 -> null
+              - max_memory_usage_for_user                          = 0 -> null
+              - max_network_bandwidth                              = 0 -> null
+              - max_network_bandwidth_for_user                     = 0 -> null
+              - max_query_size                                     = 0 -> null
+              - max_replica_delay_for_distributed_queries          = 0 -> null
+              - max_result_bytes                                   = 0 -> null
+              - max_result_rows                                    = 0 -> null
+              - max_rows_in_distinct                               = 0 -> null
+              - max_rows_in_join                                   = 0 -> null
+              - max_rows_in_set                                    = 0 -> null
+              - max_rows_to_group_by                               = 0 -> null
+              - max_rows_to_read                                   = 0 -> null
+              - max_rows_to_sort                                   = 0 -> null
+              - max_rows_to_transfer                               = 0 -> null
+              - max_temporary_columns                              = 0 -> null
+              - max_temporary_non_const_columns                    = 0 -> null
+              - max_threads                                        = 0 -> null
+              - merge_tree_max_bytes_to_use_cache                  = 0 -> null
+              - merge_tree_max_rows_to_use_cache                   = 0 -> null
+              - merge_tree_min_bytes_for_concurrent_read           = 0 -> null
+              - merge_tree_min_rows_for_concurrent_read            = 0 -> null
+              - min_bytes_to_use_direct_io                         = 0 -> null
+              - min_count_to_compile                               = 0 -> null
+              - min_count_to_compile_expression                    = 0 -> null
+              - min_execution_speed                                = 0 -> null
+              - min_execution_speed_bytes                          = 0 -> null
+              - min_insert_block_size_bytes                        = 0 -> null
+              - min_insert_block_size_rows                         = 0 -> null
+              - output_format_json_quote_64bit_integers            = false -> null
+              - output_format_json_quote_denormals                 = false -> null
+              - priority                                           = 0 -> null
+              - quota_mode                                         = "unspecified" -> null
+              - read_overflow_mode                                 = "unspecified" -> null
+              - readonly                                           = 0 -> null
+              - receive_timeout                                    = 0 -> null
+              - replication_alter_partitions_sync                  = 0 -> null
+              - result_overflow_mode                               = "unspecified" -> null
+              - select_sequential_consistency                      = false -> null
+              - send_progress_in_http_headers                      = false -> null
+              - send_timeout                                       = 0 -> null
+              - set_overflow_mode                                  = "unspecified" -> null
+              - skip_unavailable_shards                            = false -> null
+              - sort_overflow_mode                                 = "unspecified" -> null
+              - timeout_overflow_mode                              = "unspecified" -> null
+              - transfer_overflow_mode                             = "unspecified" -> null
+              - transform_null_in                                  = false -> null
+              - use_uncompressed_cache                             = false -> null
+            }
+        }
+
+      - zookeeper {
+          - resources {
+              - disk_size = 0 -> null
+            }
+        }
+    }
+
+  # yandex_storage_bucket.bucket-dev will be destroyed
+  - resource "yandex_storage_bucket" "bucket-dev" {
+      - access_key            = "YCAJEATZ2ic2bgXBibKj52zxM" -> null
+      - acl                   = "private" -> null
+      - bucket                = "tf-bucket-dev" -> null
+      - bucket_domain_name    = "tf-bucket-dev.storage.yandexcloud.net" -> null
+      - default_storage_class = "STANDARD" -> null
+      - folder_id             = "b1gjidbal573f10rma62" -> null
+      - force_destroy         = false -> null
+      - id                    = "tf-bucket-dev" -> null
+      - max_size              = 0 -> null
+      - secret_key            = (sensitive value)
+
+      - anonymous_access_flags {
+          - list = false -> null
+          - read = false -> null
+        }
+
+      - versioning {
+          - enabled = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 2 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+yandex_storage_bucket.bucket-dev: Destroying... [id=tf-bucket-dev]
+yandex_mdb_clickhouse_cluster.ch_database: Destroying... [id=c9qvopbfe5q43tsmkn29]
+yandex_storage_bucket.bucket-dev: Still destroying... [id=tf-bucket-dev, 10s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still destroying... [id=c9qvopbfe5q43tsmkn29, 10s elapsed]
+yandex_storage_bucket.bucket-dev: Destruction complete after 13s
+yandex_mdb_clickhouse_cluster.ch_database: Still destroying... [id=c9qvopbfe5q43tsmkn29, 20s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still destroying... [id=c9qvopbfe5q43tsmkn29, 30s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Still destroying... [id=c9qvopbfe5q43tsmkn29, 40s elapsed]
+yandex_mdb_clickhouse_cluster.ch_database: Destruction complete after 49s
+
+Destroy complete! Resources: 2 destroyed.
