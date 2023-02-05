@@ -1,0 +1,9 @@
+pandas==1.5.2
+prefect==2.7.7
+prefect-aws==0.2.4
+prefect-github==0.1.5
+prefect-sqlalchemy==0.2.2
+pyarrow==10.0.1
+sqlalchemy==1.4.46
+clickhouse-driver==0.2.5
+clickhouse-sqlalchemy==0.2.3
