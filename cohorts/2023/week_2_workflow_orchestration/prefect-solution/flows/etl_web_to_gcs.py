@@ -1,9 +1,16 @@
-from pathlib import Path
 import pandas as pd
-import shutil
+
+from pathlib import Path
+
 from prefect import flow, task
+from prefect.context import get_run_context, FlowRunContext, TaskRunContext
+from prefect.blocks.notifications import SlackWebhook
 from prefect_aws import AwsCredentials
 from prefect_aws.s3 import S3Bucket
+
+import re
+import shutil
+
 from typing import List
 
 
@@ -67,6 +74,28 @@ def etl_web_to_gcs(month: int = 1, year: int = 2020, color: str = "green") -> No
     write_remote(dataset_path)
 
 
+# NOTE: This shouldn't be task
+def notify_slack(flow_ctx: FlowRunContext, status: str) -> None:
+    message = f"""
+    Flow status: {status}
+    Flow run URL: http://127.0.0.1:4200/flow-runs/flow-run/{flow_ctx.flow_run.id}
+    """
+    message = re.sub(r'\n\s+', '\n', message.strip())
+
+    slack_webhook_block = SlackWebhook.load("slack-alerts")
+    slack_webhook_block.notify(message)
+
+
+@flow()
+def etl_web_to_gcs_with_alerts(month: int = 1, year: int = 2020, color: str = "green") -> None:
+    try:
+        etl_web_to_gcs(month=month, year=year, color=color)
+    except:
+        notify_slack(get_run_context(), "FAIL")
+    else:
+        notify_slack(get_run_context(), "OK")
+
+
 @flow()
 def etl_web_to_gcs_multiple(months: List[int] = [2, 3], year: int = 2019, color: str = "green") -> None:
     for month in months:
@@ -75,4 +104,5 @@ def etl_web_to_gcs_multiple(months: List[int] = [2, 3], year: int = 2019, color:
 
 if __name__ == "__main__":
     # etl_web_to_gcs()
-    etl_web_to_gcs_multiple(color="yellow")
+    # etl_web_to_gcs_multiple(color="yellow")
+    etl_web_to_gcs_with_alerts(color="green")
