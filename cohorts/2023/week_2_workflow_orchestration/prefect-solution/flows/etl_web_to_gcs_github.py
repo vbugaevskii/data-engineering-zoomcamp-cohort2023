@@ -8,7 +8,7 @@ from tempfile import TemporaryDirectory
 @task(log_prints=True)
 def clone_repository() -> None:
     github = GitHub.load("github-connector")
-    subdir = "cohorts/2023/week_2_workflow_orchestration"
+    subdir = "cohorts/2023/week_2_workflow_orchestration/prefect-solution/flows"
 
     package_dir = Path("etl_flows")
 
