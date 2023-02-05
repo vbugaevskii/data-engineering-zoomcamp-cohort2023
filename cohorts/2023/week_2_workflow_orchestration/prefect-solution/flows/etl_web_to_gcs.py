@@ -92,6 +92,7 @@ def etl_web_to_gcs_with_alerts(month: int = 1, year: int = 2020, color: str = "g
         etl_web_to_gcs(month=month, year=year, color=color)
     except:
         notify_slack(get_run_context(), "FAIL")
+        raise
     else:
         notify_slack(get_run_context(), "OK")
 
