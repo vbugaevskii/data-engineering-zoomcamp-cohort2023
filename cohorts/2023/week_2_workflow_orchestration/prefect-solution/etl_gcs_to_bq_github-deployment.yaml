@@ -1,0 +1,55 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-gcs-to-bq-github'
+###
+name: etl_gcs_to_bq_github
+description: null
+version: 9bdd383bbceb3e7f588b2a4e2d0635eb
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters:
+  month: 4
+  year: 2019
+  color: green
+schedule: null
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-gcs-to-bq-github
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: 2ac7dae2-1077-42d6-9ee2-fbc89b205b24
+  _block_document_name: anonymous-703fab49-0fcd-4fb8-a7c5-342289d88b09
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /Users/vladimir/Documents/data-engineering-zoomcamp-cohort2023/cohorts/2023/week_2_workflow_orchestration/prefect-solution
+entrypoint: flows/etl_web_to_gcs_github.py:etl_gcs_to_bq_github
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    month:
+      title: month
+      default: 11
+      position: 0
+    year:
+      title: year
+      default: 2020
+      position: 1
+    color:
+      title: color
+      default: green
+      position: 2
+  required: null
+  definitions: null

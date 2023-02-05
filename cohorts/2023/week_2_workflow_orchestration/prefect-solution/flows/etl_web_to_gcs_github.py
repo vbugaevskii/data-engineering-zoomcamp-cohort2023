@@ -1,6 +1,9 @@
+import re
 from pathlib import Path
-from prefect.filesystems import GitHub
 from prefect import flow, task
+from prefect.blocks.notifications import SlackWebhook
+from prefect.context import get_run_context, FlowRunContext, TaskRunContext
+from prefect.filesystems import GitHub
 import shutil
 from tempfile import TemporaryDirectory
 
@@ -21,14 +24,28 @@ def clone_repository() -> None:
     return package_dir
 
 
-@flow()
-def main() -> None:
+# NOTE: This shouldn't be task
+def notify_slack(flow_ctx: FlowRunContext, status: str) -> None:
+    message = f"""
+    Flow status: {status}
+    Flow run URL: http://127.0.0.1:4200/flow-runs/flow-run/{flow_ctx.flow_run.id}
+    """
+    message = re.sub(r'\n\s+', '\n', message.strip())
+
+    slack_webhook_block = SlackWebhook.load("slack-alerts")
+    slack_webhook_block.notify(message)
+
+
+@flow(log_prints=True)
+def etl_gcs_to_bq_github(month=11, year=2020, color='green') -> None:
     clone_repository()
 
     # FIXME: Imports looks aweful
     from etl_flows.etl_web_to_gcs import etl_web_to_gcs
-    etl_web_to_gcs(month=11, year=2020, color='green')
+    etl_web_to_gcs(month=month, year=year, color=color)
+
+    notify_slack(get_run_context(), 'OK')
 
 
 if __name__ == "__main__":
-    main()
+    etl_gcs_to_bq_github()
