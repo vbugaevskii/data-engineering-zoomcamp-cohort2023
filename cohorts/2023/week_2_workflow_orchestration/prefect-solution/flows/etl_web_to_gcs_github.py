@@ -43,7 +43,8 @@ def notify_slack(flow_ctx: FlowRunContext, status: str) -> None:
 def etl_gcs_to_bq_github(month=11, year=2020, color='green') -> None:
     clone_repository()
 
-    # FIXME: Imports looks aweful
+    # FIXME: Imports looks aweful, don't do like this
+    # See "etl_web_to_gcs_github_deploy.py"
     from etl_flows.etl_web_to_gcs import etl_web_to_gcs
     etl_web_to_gcs(month=month, year=year, color=color)
 
