@@ -64,3 +64,6 @@ prefect agent start --work-queue "default"
   - create your own [app](https://api.slack.com/apps) in Slack;
   - create incoming [web hooks](https://api.slack.com/messaging/webhooks) for your app.
 
+7. slack notifications:
+  - use web hooks (not incoming web hooks);
+  - pay attention to [the tutorial](https://medium.com/the-prefect-blog/sending-slack-notifications-in-python-with-prefect-840a895f81c).
