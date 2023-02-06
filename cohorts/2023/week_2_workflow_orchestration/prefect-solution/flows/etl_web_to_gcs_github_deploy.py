@@ -13,7 +13,7 @@ deployment = Deployment.build_from_flow(
      parameters={'month': 4, 'year': 2019, 'color': 'green'},
      name="etl_web_to_gcs_github_deploy",
      storage=GitHub.load("github-connector"),
-     entrypoint="cohorts/2023/week_2_workflow_orchestration/prefect-solution/flows/etl_web_to_gcs.py:etl_web_to_gcs"
+     entrypoint="cohorts/2023/week_2_workflow_orchestration/prefect-solution/flows/etl_web_to_gcs.py:etl_web_to_gcs",
 )
 
 
