@@ -14,8 +14,8 @@ def create_yellow_table():
     CREATE TABLE IF NOT EXISTS default.yellow_taxi_data
     (
         VendorID                              Int64,
-        tpep_pickup_datetime                   Date,
-        tpep_dropoff_datetime                  Date,
+        tpep_pickup_datetime               DateTime,
+        tpep_dropoff_datetime              DateTime,
         passenger_count                       Int64,
         trip_distance                         Float,
         RatecodeID                            Int64,
@@ -44,8 +44,8 @@ def create_green_table():
     CREATE TABLE IF NOT EXISTS default.green_taxi_data
     (
         VendorID                             Int64,
-        lpep_pickup_datetime                  Date,
-        lpep_dropoff_datetime                 Date,
+        lpep_pickup_datetime              DateTime,
+        lpep_dropoff_datetime             DateTime,
         store_and_fwd_flag  LowCardinality(String),
         RatecodeID                           Int64,
         PULocationID                         Int64,
@@ -66,7 +66,7 @@ def create_green_table():
     )
     ENGINE = MergeTree()
     PARTITION BY toYYYYMM(lpep_pickup_datetime)
-    ORDER BY tpep_pickup_datetime
+    ORDER BY lpep_pickup_datetime
     SETTINGS index_granularity = 8192
     '''
 
@@ -75,7 +75,8 @@ def drop_table(table):
     return f'DROP TABLE IF EXISTS {table}'
 
 
-@task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1), log_prints=True)
+# @task(retries=3, cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1), log_prints=True)
+@task(retries=3, log_prints=True)
 def extract_from_gcs(color: str, year: int, month: int) -> Path:
     """Download trip data from GCS"""
     AwsCredentials.load("yandex-cloud-s3-credentials")
@@ -114,6 +115,7 @@ def write_bq(df: pd.DataFrame, color) -> None:
         # print("Create table:\n", sql_query)
         con.execute(sql_query)
 
+        # print(df.head())
         df.to_sql(name=f'{color}_taxi_data', con=con.get_engine(),
                   chunksize=100_000, if_exists='append', index=False)
 
@@ -129,7 +131,7 @@ def etl_gcs_to_bq(month: int = 1, year: int = 2020, color: str = "green") -> int
 
 
 @flow(log_prints=True)
-def etl_gcs_to_bq_multiple(months: List[int] = [2, 3], year: int = 2019, color: str = "yellow") -> None:
+def etl_gcs_to_bq_multiple(months: List[int] = [1, ], year: int = 2019, color: str = "green") -> None:
     rows_processed = 0
     for month in months:
         print(f"Processing {year}-{month} partition; color = {color}")

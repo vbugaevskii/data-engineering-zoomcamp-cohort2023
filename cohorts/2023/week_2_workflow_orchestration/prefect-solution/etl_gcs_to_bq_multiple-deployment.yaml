@@ -3,13 +3,34 @@
 ###
 name: etl_gcs_to_bq_multiple
 description: null
-version: 769e64d1db10f151e2db2f47d3624be4
+version: f832a67c0048d1cf9173ea5948a2d223
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
-parameters: {"months": [2, 3], "year": 2019, "color": "yellow"}
+parameters:
+  months:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  year: 2019
+  color: green
 schedule: null
 infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-gcs-to-bq-multiple
+manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -18,17 +39,14 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
+  _block_document_id: f4ebf23f-8841-4be7-bfb6-be669c955c33
+  _block_document_name: anonymous-698ecf92-5b21-4c15-bc8d-9cd883a1bc7e
+  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: etl-gcs-to-bq-multiple
-manifest_path: null
 storage: null
-path: /Users/vladimir/Documents/data-engineering-zoomcamp-cohort2023/cohorts/2023/week_2_workflow_orchestration/prefect-solution/flows
-entrypoint: etl_gcs_to_bq.py:etl_gcs_to_bq_multiple
+path: /Users/vladimir/Documents/data-engineering-zoomcamp-cohort2023/cohorts/2023/week_2_workflow_orchestration/prefect-solution
+entrypoint: flows/etl_gcs_to_bq.py:etl_gcs_to_bq_multiple
 parameter_openapi_schema:
   title: Parameters
   type: object
@@ -49,7 +67,7 @@ parameter_openapi_schema:
       type: integer
     color:
       title: color
-      default: green
+      default: yellow
       position: 2
       type: string
   required: null
