@@ -11,6 +11,7 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
 1. Create a [virtual machine](https://cloud.yandex.ru/services/compute) using the network and ssh key from previous steps. You can use latest version of Ubuntu.
 2. Install Spark with the configuration used in Data Proc:
    * update Ubuntu repositories:
+   
      ```
      ssh ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net \
      "cat /etc/apt/sources.list.d/yandex-dataproc.list" | \
@@ -23,10 +24,12 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
      sudo apt update
      ```
    * install Spark:
+   
      ```
      sudo apt install openjdk-8-jre-headless hadoop-client hadoop-hdfs spark-core spark-python
      ```
    * copy the right configuration:
+   
      ```
      sudo -E scp -r \
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/etc/hadoop/conf/* \
@@ -37,18 +40,21 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
          /etc/spark/conf/
      ```
    * copy Yandex.Cloud java library for working with S3:
+   
      ```
      sudo -E scp -r \
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/iam-s3-credentials/* \
          /usr/lib/iam-s3-credentials/
      ```
-3. Prepare python environment (using conda) where JupyterLab will be run and used for submitting PySpark jobs. Create [requirements.txt](./requirements.txt) file according to [the version of Data Proc](https://cloud.yandex.ru/docs/data-proc/concepts/environment).
+3. Prepare python environment (using conda) where JupyterLab will be run and used for submitting PySpark jobs. Create [requirements.txt](./requirements.txt) file according to [the version of Data Proc](https://cloud.yandex.ru/docs/data-proc/concepts/environment):
+
    ```
    conda create -n pyspark-jupyter python=3.8
    conda activate pyspark-jupyter
    pip install -r requirements.txt
    ```
 4. Run JupyterLab and forward the port from vm:
+
    ```
    ssh -i ~/.ssh/dezoomcamp -L 8888:localhost:8888 -Nf vbugaevskii@84.252.143.86
    ```
