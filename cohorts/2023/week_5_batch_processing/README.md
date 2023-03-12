@@ -53,6 +53,12 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/iam-s3-credentials/* \
          /usr/lib/iam-s3-credentials/
      ```
+   * copy other external java libraries:
+     ```
+     sudo -E scp -r \
+         ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/spark/external \
+         /usr/lib/spark/external
+     ```
    * check everything works:
      ```
      spark-submit \
