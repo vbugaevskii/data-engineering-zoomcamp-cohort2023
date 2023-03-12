@@ -8,7 +8,11 @@ Unfortunatelly Google Cloud and AWS are not available in my country, so I will u
 4. Don't forget to mark `UI Proxy` option for having access to logs.
 
 Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/tutorials/pyspark-job-basics), but without having an interactive access using JupyterLab. If you want to run PySpark jobs interactively, you have to follow the [instructions](https://cloud.yandex.ru/docs/data-proc/tutorials/remote-run-job):
-1. Create a [virtual machine](https://cloud.yandex.ru/services/compute) using the network and ssh key from previous steps. You can use latest version of Ubuntu.
+1. Create a [virtual machine](https://cloud.yandex.ru/services/compute) using the network and ssh key from previous steps. You can use latest version of Ubuntu. Connect with ssh:
+   ```bash
+   ssh -i ~/.ssh/dezoomcamp -A vbugaevskii@84.252.143.86
+   ```
+
 2. Install Spark with the configuration used in Data Proc:
    * update Ubuntu repositories:
    
