@@ -26,7 +26,14 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
    * install Spark:
    
      ```
-     sudo apt install openjdk-8-jre-headless hadoop-client hadoop-hdfs spark-core spark-python
+     sudo apt install openjdk-8-jre-headless hadoop-client hadoop-hdfs spark-core
+     ```
+   * install Spark python dependencies:
+     ```
+     wget https://archive.apache.org/dist/spark/spark-3.0.3/spark-3.0.3-bin-hadoop3.2.tgz
+     tar -xvzf spark-3.0.3-bin-hadoop3.2.tgz
+     sudo cp spark-3.0.3-bin-hadoop3.2/python/ /usr/lib/spark/ -R
+     sudo chown root:root /usr/lib/spark/python/ -R
      ```
    * copy the right configuration:
    
