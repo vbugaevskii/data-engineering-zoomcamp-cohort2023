@@ -64,7 +64,7 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
 3. Prepare python environment (using conda) where JupyterLab will be run and used for submitting PySpark jobs. Create [requirements.txt](./requirements.txt) file according to [the version of Data Proc](https://cloud.yandex.ru/docs/data-proc/concepts/environment):
 
    ```
-   conda create -n pyspark-jupyter python=3.8
+   conda create -n pyspark-jupyter python=3.8 -y
    conda activate pyspark-jupyter
    pip install -r requirements.txt
    ```
