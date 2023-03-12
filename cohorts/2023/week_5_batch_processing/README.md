@@ -53,6 +53,14 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/iam-s3-credentials/* \
          /usr/lib/iam-s3-credentials/
      ```
+   * check everything works:
+     ```
+     spark-submit \
+         --master yarn \
+         --deploy-mode cluster \
+         --class org.apache.spark.examples.SparkPi \
+         /usr/lib/spark/examples/jars/spark-examples.jar 1000
+     ```
 3. Prepare python environment (using conda) where JupyterLab will be run and used for submitting PySpark jobs. Create [requirements.txt](./requirements.txt) file according to [the version of Data Proc](https://cloud.yandex.ru/docs/data-proc/concepts/environment):
 
    ```
