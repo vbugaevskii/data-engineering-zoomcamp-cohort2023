@@ -42,24 +42,24 @@ Now it's possible to [run PySpark jobs](https://cloud.yandex.ru/docs/data-proc/t
    * copy the right configuration:
    
      ```
-     sudo -E scp -r \
+     sudo -E scp -i ~/.ssh/id_rsa -r \
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/etc/hadoop/conf/* \
          /etc/hadoop/conf/
 
-     sudo -E scp -r \
+     sudo -E scp -i ~/.ssh/id_rsa -r \
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/etc/spark/conf/* \
          /etc/spark/conf/
      ```
    * copy Yandex.Cloud java library for working with S3:
    
      ```
-     sudo -E scp -r \
-         ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/iam-s3-credentials/* \
-         /usr/lib/iam-s3-credentials/
+     sudo -E scp -i ~/.ssh/id_rsa -r \
+         ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/iam-s3-credentials \
+         /usr/lib/iam-s3-credentials
      ```
    * copy other external java libraries:
      ```
-     sudo -E scp -r \
+     sudo -E scp -i ~/.ssh/id_rsa -r \
          ubuntu@rc1a-dataproc-m-wukw392m8plsgw7a.mdb.yandexcloud.net:/usr/lib/spark/external \
          /usr/lib/spark/external
      ```
