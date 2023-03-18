@@ -12,7 +12,7 @@ The 2nd error is the most distinct sign you have the wrong jar-libarary. You can
 
 ### Solution
 
-I had to forcely update at namenode and datanodes machines of DataProc. 
+I had to forcely update jars at namenode and datanodes machines of DataProc:
 
 ```
 # connect to vm
