@@ -6,7 +6,7 @@ This is document has some extra notes about configuring PySpark cluster for inte
 - `org.apache.kafka.common.config.ConfigException: Missing required configuration "partition.assignment.strategy" which has no default value`;
 - `java.lang.NoSuchMethodError: 'void org.apache.kafka.clients.consumer.KafkaConsumer.subscribe(java.util.Collection)'`.
 
-The 1st error can be partialy solved setting the option `kafka.partition.assignment.strategy` to sove values, e.g., `range` or `roundrobin`. However, the 2nd error will appear.
+The 1st error can be partialy solved setting the option `kafka.partition.assignment.strategy` to some valid values, e.g., `range` or `roundrobin`. However, the 2nd error will appear.
 
 The 2nd error is the most distinct sign you have the wrong jar-libarary. You can try to solve this problem passing the right version of library using `spark.jars.packages` or `spark.jars` options, but in my case it didn't help.
 
@@ -34,4 +34,4 @@ systemctl restart hadoop-yarn@nodemanager.service       # if it's datanode
 systemctl restart hadoop-yarn@resourcemanager.service   # if it's namenode
 ```
 
-When you have done these steps you possibly can get `org.apache.kafka.common.KafkaException: Failed to construct kafka consumer` error. Than you have to read the stacktrace and change your configuration the right way.
+When you have done these steps you possibly can get `org.apache.kafka.common.KafkaException: Failed to construct kafka consumer` error. Than you have to read the stacktrace and change your configuration the right way. You can find working configuration [here](https://github.com/vbugaevskii/data-engineering-zoomcamp-cohort2023/blob/main/cohorts/2023/week_6_stream_processing/pyspark/solution-ya-fixed.ipynb).
